@@ -2,17 +2,31 @@
 import { useState } from "react";
 import "./App.css";
 import Popup from "./common/Popup";
+import Listli from "./common/Listli";
 
 function App() {
-  const test = "travel";
   const [list, setList] = useState([
     "송도센트럴파크",
     "파주 프로방스 / 헤이리 마을",
     "춘천 소양강 스카이워크",
   ]);
 
-  const [count, setCount] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
+  const [titleNo, setTitleNo] = useState(0);
+  const [inText, setInText] = useState("");
+
+  function writeList() {
+    if (inText === "") {
+      alert("내용을 입력해주세요");
+    } else {
+      // setList([...list, inText]);
+      let copyList = [...list];
+      // copyList.push(inText);
+      copyList.unshift(inText);
+      setList(copyList);
+      setInText("");
+    }
+  }
 
   return (
     <div className="wrap">
@@ -24,8 +38,18 @@ function App() {
       </header>
       <main>
         <div className="textInput">
-          <input type="text" placeholder="가고싶은 여행지를 입력하세요" />
-          <button type="button">ADD</button>
+          <input
+            type="text"
+            placeholder="가고싶은 여행지를 입력하세요"
+            value={inText}
+            onChange={(e) => {
+              e.preventDefault();
+              setInText(e.target.value);
+            }}
+          />
+          <button type="button" onClick={writeList}>
+            ADD
+          </button>
         </div>
         <button
           onClick={() => {
@@ -45,30 +69,28 @@ function App() {
           }}>
           toggle
         </button>
-        <div className="textInput">
-          <input type="text" placeholder="가고싶은 여행지를 입력하세요" />
-          <button type="button">ADD</button>
-        </div>
         <div className="listCountName">
           Total
-          <span id="listCountNumber">{count}</span>
+          <span id="listCountNumber">{list.length}</span>
         </div>
         <ul className="list">
-          <li>
-            <p>{list[0]}</p>
-            <i className="fa-solid fa-trash-can"></i>
-          </li>
-          <li>
-            <p>{list[1]}</p>
-            <i className="fa-solid fa-trash-can"></i>
-          </li>
-          <li>
-            <p>{list[2]}</p>
-            <i className="fa-solid fa-trash-can"></i>
-          </li>
+          {list.map((list, i) => {
+            return (
+              <Listli
+                key={i}
+                list={list}
+                setIsOpen={setIsOpen}
+                setTitleNo={setTitleNo}
+                index={i}
+              />
+            );
+          })}
+          {/* a는 배열값, i는 인덱스 */}
         </ul>
       </main>
-      {isOpen === false ? null : <Popup list={list} setIsOpen={setIsOpen} />}
+      {isOpen === false ? null : (
+        <Popup list={list} setIsOpen={setIsOpen} titleNo={titleNo} />
+      )}
     </div>
   );
 }

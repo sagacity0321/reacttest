@@ -1,8 +1,8 @@
-export default function Popup({ list, setIsOpen }) {
+export default function Popup({ list, setIsOpen, titleNo }) {
   return (
     <>
       <section className="popup">
-        {list[0]}
+        {list[titleNo]}
         <button
           onClick={() => {
             setIsOpen(false);
