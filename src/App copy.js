@@ -1,7 +1,6 @@
 // import logo from './logo.svg';
 import { useState } from "react";
 import "./App.css";
-import Popup from "./common/Popup";
 
 function App() {
     const test = "travel";
@@ -25,9 +24,35 @@ function App() {
                     <input
                         type="text"
                         placeholder="가고싶은 여행지를 입력하세요"
+                        
                     />
-                    <button type="button">ADD</button>
+                    <button type="button"
+                    onClick={()=>{
+                        
+                    }}>ADD</button>
                 </div>
+                <button
+                    onClick={() => {
+                        setCount(count + 1);
+                    }}>
+                    숫자올리기
+                </button>
+                <button
+                    onClick={() => {
+                        let copy = [...list];
+                        copy[0] = "제주도";
+                        setList(copy);
+                    }}>
+                    제목변경
+                </button>
+                <button
+                    onClick={() => {
+                        let copy = [...list];
+                        copy.sort();
+                        setList(copy);
+                    }}>
+                    가나다순 정렬
+                </button>
                 <div className="listCountName">
                     Total
                     <span id="listCountNumber">{count}</span>
@@ -47,7 +72,6 @@ function App() {
                     </li>
                 </ul>
             </main>
-            <Popup />
         </div>
     );
 }

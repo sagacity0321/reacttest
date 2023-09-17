@@ -1,38 +1,175 @@
-.App {
-  text-align: center;
+* {
+    box-sizing: border-box;
+}
+:root {
+    --gray100: #f2f2f2;
+    --gray200: #d9d9d9;
+    --gray300: #808080;
+    --gray400: #333333;
+    --gray500: #262626;
+    --gray600: #1a1a1a;
+    --gray700: #0d0d0d;
+    --purple: #8284fa;
+    --purpledark: #5e60ce;
+    --blue: #4ea8de;
+    --bluedark: #1e6f9f;
+    --danger: #e25858;
+    --mw: 800px;
+}
+@font-face {
+    font-family: "S-CoreDream-3Light";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff")
+        format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "SpoqaHanSansNeo-Regular";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff")
+        format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Shilla_Gothic-Bold";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/Shilla_Gothic-Bold.woff2")
+        format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+header {
+    background-color: var(--gray700);
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+}
+header h1 {
+    font-family: "Shilla_Gothic-Bold";
+    font-size: 2rem;
+}
+header h1::before {
+    content: "\f135";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: var(--purpledark);
+    display: inline-block;
+    transform: rotate(-45deg) translate(-5px, 5px);
+}
+header h1 span:first-of-type {
+    color: var(--blue);
+}
+header h1 span:last-of-type {
+    color: var(--bluedark);
+}
+body {
+    background-color: var(--gray600);
+    color: var(--gray100);
+    font-family: "S-CoreDream-3Light";
+}
+main{
+    max-width: var(--mw);
+    width: calc(100% - 4rem);
+    margin: auto;
+    position: relative;
+    top: -1.5rem;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.textInput{
+    display: flex;
+    gap:1rem;
+    margin-bottom: 1rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.textInput input,
+.textInput button{
+    border-radius: 0.5rem;
+    padding: 0.8rem 1rem;
+    border:none;
+    font-face: 'SpoqaHanSansNeo-Regular';
+    font-size: 0.8rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.textInput input{
+    flex-grow: 1;
+    background-color: var(--gray500);
+    color: var(--gray100);
 }
 
-.App-link {
-  color: #61dafb;
+.textInput button{
+    font-weight: bold;
+    background-color: var(--bluedark);
+    color: var(--gray100);
+    cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.textInput button:hover,
+.textInput button:focus{
+    background-color: var(--blue);
+}
+
+
+@media (max-width:500px){
+    .textInput{
+        flex-direction: column;
+    }
+}
+.listCountName{
+    text-align: right;
+    font-size: 0.8rem;
+    color: var(--purpledark);
+    margin-bottom: 1rem;
+}
+
+.listCountName span{
+    display: inline-block;
+    color: var(--gray100);
+    margin-left: 0.2rem;
+    background-color: var(--gray300);
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.5rem;
+}
+
+.list{
+
+}
+
+.list li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--gray500);
+    border: 1px solid var(--gray400);
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    
+}
+
+.list li p{
+    white-space: nowrap;
+    overflow: hidden;  
+    text-overflow: ellipsis;
+    padding: 1rem;
+    font-face: 'SpoqaHanSansNeo-Regular';
+    font-size: 0.8rem;
+}
+
+.list li > *{
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+.list li i{
+    transition: 0.5s;
+}
+
+.list li i:hover{
+    color: var(--danger);
+}
+
+.popup{
+    background-color: var(--gray100);
+    padding: 3rem;
+    color: var(--gray600);
 }
