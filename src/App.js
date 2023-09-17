@@ -73,7 +73,7 @@ function App() {
               e.preventDefault();
               setInText(e.target.value);
             }}
-            onKeyUpCapture={(e) => {PressEnter('writeList')}}
+            onKeyUp={(e) => {PressEnter('writeList')}}
           />
           <button type="button" onClick={writeList}>
             ADD
