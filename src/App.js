@@ -23,6 +23,10 @@ function App() {
         </h1>
       </header>
       <main>
+        <div className="textInput">
+          <input type="text" placeholder="가고싶은 여행지를 입력하세요" />
+          <button type="button">ADD</button>
+        </div>
         <button
           onClick={() => {
             setIsOpen(true);
@@ -40,7 +44,6 @@ function App() {
             setIsOpen(!isOpen);
           }}>
           toggle
-          {/* 열기 닫기 모두 가능 */}
         </button>
         <div className="textInput">
           <input type="text" placeholder="가고싶은 여행지를 입력하세요" />
