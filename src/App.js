@@ -15,18 +15,45 @@ function App() {
   const [titleNo, setTitleNo] = useState(0);
   const [inText, setInText] = useState("");
 
-  function writeList() {
+  const PressEnter = (func) => {
+    if (window.event.keyCode === 13) {
+      switch (func) {
+        case "writeList": writeList(); 
+          break;
+        default: break;
+      }
+    }
+  };
+
+  const writeList = () => {
     if (inText === "") {
       alert("내용을 입력해주세요");
     } else {
-      // setList([...list, inText]);
       let copyList = [...list];
-      // copyList.push(inText);
       copyList.unshift(inText);
       setList(copyList);
       setInText("");
     }
-  }
+  };
+
+  // function writeList() {
+  //   if (inText === "") {
+  //     alert("내용을 입력해주세요");
+  //   } else {
+  //     // setList([...list, inText]);
+  //     let copyList = [...list];
+  //     // copyList.push(inText);
+  //     copyList.unshift(inText);
+  //     setList(copyList);
+  //     setInText("");
+  //   }
+  // }
+
+  const delList = (index) => {
+    let copyList = [...list];
+    copyList.splice(index, 1);
+    setList(copyList);
+  };
 
   return (
     <div className="wrap">
@@ -46,12 +73,13 @@ function App() {
               e.preventDefault();
               setInText(e.target.value);
             }}
+            onKeyUpCapture={(e) => {PressEnter('writeList')}}
           />
           <button type="button" onClick={writeList}>
             ADD
           </button>
         </div>
-        <button
+        {/* <button
           onClick={() => {
             setIsOpen(true);
           }}>
@@ -68,25 +96,31 @@ function App() {
             setIsOpen(!isOpen);
           }}>
           toggle
-        </button>
+        </button> */}
         <div className="listCountName">
           Total
           <span id="listCountNumber">{list.length}</span>
         </div>
-        <ul className="list">
-          {list.map((list, i) => {
-            return (
-              <Listli
-                key={i}
-                list={list}
-                setIsOpen={setIsOpen}
-                setTitleNo={setTitleNo}
-                index={i}
-              />
-            );
-          })}
-          {/* a는 배열값, i는 인덱스 */}
-        </ul>
+        {list.length >= 1 ? (
+          <ul className="list">
+            {list.map((list, i) => {
+              return (
+                <Listli
+                  key={i}
+                  list={list}
+                  setIsOpen={setIsOpen}
+                  setTitleNo={setTitleNo}
+                  index={i}
+                  delList={delList}
+                />
+              );
+            })}
+            {/* a는 배열값, i는 인덱스 */}
+          </ul>
+        ) : (
+          <p >Empty List</p>  
+        )
+        }
       </main>
       {isOpen === false ? null : (
         <Popup list={list} setIsOpen={setIsOpen} titleNo={titleNo} />
